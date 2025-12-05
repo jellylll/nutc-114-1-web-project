@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>米白卡其計算機</title>
+    <style>
+        /* 定義主要配色 */
+        :root {
+            --color-cream: #fbf8f0;    /* 主體米白 */
+            --color-off-white: #ffffff; /* 容器內白 */
+            --color-khaki-dark: #5c5545; /* 深卡其/棕色文字 */
+            --color-khaki-light: #e0d8c7; /* 淺卡其按鈕背景 */
+            --color-border: #d2c8b8;  /* 柔和邊框色 */
+        }
+        
+        /* 1. 全域樣式 - 暖米白背景與卡其文字 */
+        body {
+            font-family: 'Helvetica Neue', 'Helvetica', 'Arial', 'Microsoft JhengHei', sans-serif;
+            background-color: var(--color-cream); /* 暖米白背景 */
+            color: var(--color-khaki-dark); /* 深卡其文字 */
+            margin: 40px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* 2. 容器樣式 - 柔和的米白主體 */
+        .calculator-container {
+            width: 100%;
+            max-width: 300px;
+            padding: 30px;
+            background-color: var(--color-off-white); /* 容器內使用亮一點的白色 */
+            border: 1px solid var(--color-border); /* 柔和邊框 */
+            box-shadow: 0 4px 8px rgba(92, 85, 69, 0.1); /* 帶有卡其色調的輕微陰影 */
+            border-radius: 6px; 
+        }
+
+        /* 標題 */
+        h1 {
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--color-khaki-dark);
+            border-bottom: 1px solid var(--color-border); /* 柔和分隔線 */
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* 3. 輸入區塊樣式 */
+        div {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 0.9rem;
+            color: var(--color-khaki-dark);
+            opacity: 0.8; /* 標籤文字略微柔和 */
+            margin-bottom: 5px;
+        }
+
+        input[type="number"] {
+            padding: 10px 12px;
+            border: 1px solid var(--color-border); 
+            border-radius: 4px;
+            font-size: 1rem;
+            color: var(--color-khaki-dark);
+            background-color: #f7f3eb; /* 輸入框內使用更淺的米色，增加層次 */
+            transition: border-color 0.2s;
+            /* 移除上下的小箭頭 */
+            -moz-appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"]:focus {
+            border-color: var(--color-khaki-dark); /* 聚焦時邊框轉為深卡其 */
+            outline: none;
+        }
+
+        /* 4. 按鈕樣式 - 淺卡其色 */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--color-khaki-light); /* 淺卡其色按鈕 */
+            color: var(--color-khaki-dark);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        button:hover {
+            background-color: #d1c6b5; /* 滑鼠移過時顏色略深 */
+            border-color: #bfae9c;
+        }
+
+        button:active {
+            background-color: #c4b5a2; /* 點擊時顏色更深 */
+        }
+
+        /* 5. 結果顯示樣式 */
+        p {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid var(--color-border);
+            font-size: 1rem;
+            color: var(--color-khaki-dark);
+            opacity: 0.9;
+            text-align: center;
+        }
+
+        #ans {
+            font-weight: bold;
+            color: var(--color-khaki-dark);
+            margin-left: 5px;
+            font-size: 1.1rem; /* 結果數字稍微放大 */
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>計算小工具</h1>
+        
+        <div>
+            <label for="a">數字 A</label>
+            <input id="a" type="number" />
+        </div>
+        
+        <div>
+            <label for="b">數字 B</label>
+            <input id="b" type="number" />
+        </div>
+        
+        <button onclick="calculate()">計算</button>
+        
+        <p>計算結果：<span id="ans"></span></p>
+    </div>
+    
+    <script>
+        // 修正後的 JavaScript 函數，確保進行數學相加
+        function calculate() {
+            const inputA = document.getElementById("a");
+            const inputB = document.getElementById("b");
+            const ansDom = document.getElementById("ans");
+            
+            // 使用 + 運算符將兩個值都轉換為數字後相加
+            ansDom.innerText = +inputA.value + +inputB.value;
+        }
+    </script>
+</body>
+</html>
